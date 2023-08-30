@@ -49,10 +49,20 @@ First, you need to define the storage that PostgreSQL will use. This involves cr
 ```
 kubectl apply -f postgres-manifest.yaml
 ```
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/ee1359aa-b10e-45cc-adda-d5a3215dd219)
+
+You can verify them by running:
+```
+kubectl get pv
+kubectl get pvc
+```
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/c67c9f6c-7050-4614-a480-f39b4fd866c7)
 
 ### Step 3: Deploy PostgreSQL StatefulSet:
 Create a StatefulSet manifest to deploy PostgreSQL. Here's a simplified version:
 1. Open a text editor and paste the YAML content from [here]() into a new file, for example, named postgres_pv_and_pvc.yaml.
+
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/3f46c1e0-a262-4843-b99f-cfd9b001a99e)
 
 2. Save the file.
 
@@ -65,6 +75,18 @@ Create a StatefulSet manifest to deploy PostgreSQL. Here's a simplified version:
 ```
 kubectl apply -f postgres-manifest.yaml
 ```
+
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/4c3bdf07-3ab5-493f-afca-98b4101e3bd2)
+
+The command above will create the headless service and the stateful set in your cluster. You can verify them by running:
+```
+kubectl get svc
+kubectl get sts
+kubectl get pods
+kubectl get pvc -l app=postgres
+```
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/297f9193-b27c-46af-8ff5-ceefbc81ee30)
+
 
 ### Step 4: Apply the Configurations (if you downloaded the files):
 Apply the configurations by running:
