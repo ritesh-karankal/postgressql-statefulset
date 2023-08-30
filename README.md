@@ -7,7 +7,7 @@ Statefulset : https://youtu.be/Vrxr-7rjkvM?si=Aun1541VjnVmTCHl
 
 The postgres-0 pod you have created is the initial pod in your StatefulSet, and it's running an instance of the PostgreSQL database. This entire process allows you to interact with the PostgreSQL database inside the postgres-0 pod, verifying that the database is operational and that data persists across sessions. 
 
-## Our goal is to check when you delete postgres-0 pod, a new pod with the same name (postgres-0) will be created by the StatefulSet to replace the deleted pod.
+## ⭐ Our goal is to check when you delete postgres-0 pod, a new pod with the same name (postgres-0) will be created by the StatefulSet to replace the deleted pod.
 
 /Q If I delete the postgressql pod the data still persists? 
 
