@@ -30,13 +30,13 @@ kubectl get po -A
 Now you have to read this [blog](https://kodekloud.com/blog/deploy-postgresql-kubernetes/#deploying-postgres-as-a-stateful-set-with-a-headless-service) till the ```"Deploying Postgres as a Stateful Set with a Headless Service"``` topic but follow the step mentioned below and use the file/yaml manifest from this repo (Just focus on going through the blog and the commands in this readme to acheive the goal we are trying to do after that we can understand how things are working)
 
 Here's a step-by-step guide to deploying PostgreSQL on Kubernetes using a StatefulSet:
-### ⭐️ [If you downloaded this repo the file already (You have completed steps 1 to step 3) you can now jump to step 4]
+### ⭐️ [If you downloaded this repo the file already (You have completed steps 1 to step 4) you can now jump to Step 5]
 But if you want to create this manifests on your own using the terminal, follow these steps:
 
 ### Step 1: Create a Persistent Volume (PV) and Persistent Volume Claim (PVC):
 First, you need to define the storage that PostgreSQL will use. This involves creating a Persistent Volume and a Persistent Volume Claim to bind to it.
 
-1. Open a text editor and paste the YAML content from [here]() into a new file, for example, named postgres_pv_and_pvc.yaml.
+1. Open a text editor and paste the YAML content from [here](postgres-pv.yaml) into a new file, for example, named postgres_pv_and_pvc.yaml.
 
 2. Save the file.
 
@@ -58,9 +58,15 @@ kubectl get pvc
 ```
 ![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/c67c9f6c-7050-4614-a480-f39b4fd866c7)
 
-### Step 3: Deploy PostgreSQL StatefulSet:
+### Step 2: Create a ConfigMap for PostgreSQL Configuration (configmap.yaml):
+Create file and paste the YAML content from [here](configmap.yaml) into a new file
+
+### Step 3: Create a Headless Service for PostgreSQL (postgres-headless-service.yaml):
+Create file and paste the YAML content from [here](postgres-headless-service.yaml) into a new file
+
+### Step 4: Deploy PostgreSQL StatefulSet:
 Create a StatefulSet manifest to deploy PostgreSQL. Here's a simplified version:
-1. Open a text editor and paste the YAML content from [here]() into a new file, for example, named postgres_pv_and_pvc.yaml.
+1. Open a text editor and paste the YAML content from [here](postgres-ss.yaml) into a new file, for example, named postgres_pv_and_pvc.yaml.
 
 ![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/3f46c1e0-a262-4843-b99f-cfd9b001a99e)
 
@@ -88,13 +94,14 @@ kubectl get pvc -l app=postgres
 ![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/297f9193-b27c-46af-8ff5-ceefbc81ee30)
 
 
-### Step 4: Apply the Configurations (if you downloaded the files):
+### Step 5: Apply the Configurations (if you downloaded the files):
 Apply the configurations by running:
 
 ```
-kubectl apply -f pv_and_pvc.yaml
+kubectl apply -f postgres-pv.yaml
 kubectl apply -f configmap.yaml
-kubectl apply -f statefulset.yaml
+kubectl apply -f postgres-headless-service.yaml
+kubectl apply -f postgres-ss.yaml
 ```
 
 ### Step 5: Accessing PostgreSQL:
