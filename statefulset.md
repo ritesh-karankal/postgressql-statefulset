@@ -1,11 +1,19 @@
 # postgressql-statefulset
 
-Resources -
-Blog : https://kodekloud.com/blog/deploy-postgresql-kubernetes/#deploying-postgres-as-a-stateful-set-with-a-headless-service
+Resources from the previous file -
+- [Blog](https://kodekloud.com/blog/deploy-postgresql-kubernetes/#deploying-postgres-as-a-stateful-set-with-a-headless-service)
+- [Statefulset](https://youtu.be/Vrxr-7rjkvM?si=Aun1541VjnVmTCHl)
 
-Statefulset : https://youtu.be/Vrxr-7rjkvM?si=Aun1541VjnVmTCHl
+Great Job!!
+The postgres-0 pod you have created is the initial pod in your StatefulSet, and it's running an instance of the PostgreSQL database. 
+You can see it by command
+```
+kubectl get po -A
+```
+![image](https://github.com/ritesh-karankal/postgressql-statefulset/assets/71586008/a50c17bc-7b95-406a-a81f-240fbddc3d1b)
 
-The postgres-0 pod you have created is the initial pod in your StatefulSet, and it's running an instance of the PostgreSQL database. This entire process allows you to interact with the PostgreSQL database inside the postgres-0 pod, verifying that the database is operational and that data persists across sessions. 
+
+The following process allows you to interact with the PostgreSQL database inside the postgres-0 pod, verifying that the database is operational and that data persists across sessions. 
 
 ## ⭐ Our goal is to check when you delete postgres-0 pod, a new pod with the same name (postgres-0) will be created by the StatefulSet to replace the deleted pod.
 
